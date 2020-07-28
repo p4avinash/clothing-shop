@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./sign-in.scss";
 import FormInput from "../form-input/form-input";
 import CustomButton from "../custom-button/custom-button";
+import { signInWithGoogle } from "../../firebase/firebase.utils";
 
 class SignIn extends Component {
   constructor(props) {
@@ -38,8 +39,8 @@ class SignIn extends Component {
             type="email"
             name="email"
             value={this.state.email}
-            required
             label="email"
+            required
           />
 
           <FormInput
@@ -47,11 +48,17 @@ class SignIn extends Component {
             type="password"
             name="password"
             value={this.state.password}
-            required
             label="password"
+            required
           />
 
-          <CustomButton type="submit">Sign In</CustomButton>
+          <div className="buttons">
+            <CustomButton type="submit">Sign In</CustomButton>
+            {/* I don't know why, but the "custombutton tag" should work here but it's not working so i just made it a normal button and gave the styles */}
+            <button className="googlebtn" onClick={signInWithGoogle}>
+              sign in with google
+            </button>
+          </div>
         </form>
       </div>
     );
